@@ -1,3 +1,7 @@
+
+
+/* Selection of this portion is the body and pertains to all elements within a body tag of the HTML code. property backround-color set the color value as light blue, Property color sets
+text color value as peach, property text-align sets the text to value center, property margin value 0 set the overall margin as 0. */
 body {
     background-color: #92c5de; /*lightblue*/
     color: #f4a582; /*Peach*/
@@ -5,19 +9,23 @@ body {
     margin: 0;
 }
 
-h1 {
-  color: #f4a582;
-}
 
+/* Selection is the header as described by the division Id in the HTML portion of the text. Property backround color of the header area to value Blue */
 #header { background-color: #0571b0;
 }
 
-h1 { 
-    color: #f7f7f7;
+/* Selection in Header 1 and pertains to all elements within a H1 tag. property color changes the text color value to peach. Property padding value 5px set the text in 5px from all margins of the frame. Property margin set the value 0 to all margins. */
+
+h1 {
+    color: #f4a582;
     padding: 5px;
     margin: 0;
   }
 
+/* Selection is the division Id body container as established in the HTML code. Property Backround color sets the area of this frame as value eggshell white. Property Max width sets the horizontal extent to a maxium of value 1000px. Property margin auto means that left and right
+ margin will take value auto margin according to the width of the element and the width of the container. Property Height at value 100vh (veiw port height). 1vh is equal to 1% of the veiw port height making it a 100% of the hieght. This is important in the case of changing screen sizes and resolutions.
+ Property Border establishes a value solid border at value 2px width that is also a color value eggshell white color. Property Border radius defines the radius of the borders corners  at value 25px. Because there is only one value present to pertains to all four corners of the border. Overflow hidden specifies what should happen if content overflows an element's box.
+ being hidden it will clip the content and make it not visible. */
   #body-container {
     background-color: #f7f7f7;
     max-width: 1000px;
@@ -28,15 +36,22 @@ h1 {
     overflow: hidden;
   }
 
+
+/* Selection is the division Id profile-picture as established in the HTML code. property float value left set the picture to the left of the its containing frame.   */
   #profile-picture {
     float: left;
   }
 
-#welcom-text {
+/* Selection is the division Id welcome text as established in the HTML code. property padding-top generates space around an element's content, inside of any defined borders at value 25px. In this case it creates space from the top. property font size changes all font
+within this selection to value 25 px  */
+#welcome-text {
   padding-top: 25px;
   font-size: 25px;
 }
 
+
+/* Selection is division Id research-interset as established in the HTML code. property text-align sets all text in the section as aligned to the value left setting the text to the left of the frame. property font-size establishes all text within the selection to a size of 25 px. position relative set the
+position of the frame as value relative to its normal position. property left set the value at 50 px and is the adjusment established for the relative change.*/
 #research-interest {
   text-align: left;
   font-size: 25px;
