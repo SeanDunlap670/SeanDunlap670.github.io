@@ -9,14 +9,22 @@
 <script src="javascript/external.js"></script>
 
   </head>
+
       <body>
-        
+
         <script src="javascript/external.js"></script>
 
         <div id="body-container">
 
            <div id="header">
-            <h1> Hello, my name is Sean Dunlap!</h1>
+                 <h1>
+                     <script>
+
+                          const user_name = window.prompt ("Please enter your name")
+                           document.writeln ("Hello, Welcome to my page" +"  "+ user_name +"!")
+
+                     </script>
+                   </h1>
           </div>
 
           <div id="profile-picture">
@@ -24,7 +32,7 @@
           </div>
 
           <div id="welcome-text">
-            <p> Welcome to my webpage. <br>
+            <p> My name is Sean Dunlap.<br>
               I am a student in the
               <a href="https://www.geo.txstate.edu/">Geography Department
               </a> at <a href="https://txstate.edu/">Texas State University</a>
@@ -35,9 +43,31 @@
             <h3> Research Interest </h3>
                 <ul>
                   <li> Remote Sensing </li>
-                  <li> GIS web desgin and Implimentation </li>
-                  <li> GPS Utilization </li>
+                  <li> GIS Web Desgin and Implimentation </li>
+                <li> GPS Utilization </li>
+
               </ul>
+
+
+        <footer>
+            <div id = "copyright"></div>
+
+               <script>
+
+                // Creates Variable today, sets as date
+                var today = new Date();
+
+                 // Creates Variable years sets the full year
+                  var year = today.getFullYear();
+
+                 // writes line of script plus calls function for the year variable
+               document.writeln("Copyright &copy; " + year);
+
+               </script>
+          </div>
+
+        </footer>
+
             </div>
           </div>
       </body>

@@ -18,7 +18,6 @@ user_name = window.prompt ("Please enter your name");
 document.write(user_name);
 */
 
-
 /*
   x = 22;
 const y = 33;
@@ -26,7 +25,7 @@ document.writeln(x + y);
 document.writeln("<br>");
 document.writeln(x += 33);
 */
-
+/*
 document.writeln("<button on click='condition'()>ConditionalTest</button>");
 
 function condition()
@@ -41,3 +40,4 @@ function condition()
  document.writeln("You chose Cancel!");
  }
 };
+*/

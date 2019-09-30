@@ -12,7 +12,9 @@ body {
 
 /* Selection is the header as described by the division Id in the HTML portion of the text. Property backround color of the header area to value Blue */
 #header { background-color: #0571b0;
-}
+          color: #f4a582
+          Height: 100px
+          }
 
 /* Selection in Header 1 and pertains to all elements within a H1 tag. property color changes the text color value to peach. Property padding value 5px set the text in 5px from all margins of the frame. Property margin set the value 0 to all margins. */
 
@@ -57,4 +59,22 @@ position of the frame as value relative to its normal position. property left se
   font-size: 25px;
   position: relative;
   left: 50px;
+}
+
+
+footer
+{
+    height: 100px;
+    width:100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+#copyright {
+ position: absolute;
+ width: 1000px;
+ text-align: center;
+ bottom: 20px;
+ padding-top: 50px;
 }
