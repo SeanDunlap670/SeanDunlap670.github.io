@@ -4,6 +4,7 @@
   <head>
     <title> Sean Dunlap </title>
     <!-- All Styling for this document are contained in the external css file -->
+
     <link rel="stylesheet"  type="text/css"  href="css/main_style.css">
 
 <script src="javascript/external.js"></script>
@@ -12,23 +13,19 @@
 
       <body>
 
-        <script src="javascript/external.js"></script>
 
         <div id="body-container">
 
            <div id="header">
-                 <h1>
-                     <script>
 
-                          const user_name = window.prompt ("Please enter your name")
-                           document.writeln ("Hello, Welcome to my page" +"  "+ user_name +"!")
+             <script>
+               document.write(welcome());
+             </script>
 
-                     </script>
-                   </h1>
           </div>
 
           <div id="profile-picture">
-            <img src=images/profile-picture.jpg width=500px height=500px/>
+            <img src=images/profile-picture.jpg width=250px height=250px/>
           </div>
 
           <div id="welcome-text">
@@ -49,26 +46,68 @@
               </ul>
 
 
-        <footer>
-            <div id = "copyright"></div>
+          <div id= "webmap-reveiws">
 
-               <script>
+            <script>
 
-                // Creates Variable today, sets as date
-                var today = new Date();
+            var webmaps =
+            [
 
-                 // Creates Variable years sets the full year
-                  var year = today.getFullYear();
+             ["Zillow" ,"https://www.Zillow.com" , "The map allows the user to utilize multiple search queries to find the home they are looking at. " ],
 
-                 // writes line of script plus calls function for the year variable
-               document.writeln("Copyright &copy; " + year);
+            ["The Hiking Project" , "https://www.hikingproject.com/" , "The primary purpose of the application it to highlight hiking trail systems and provide user data on trails." ]
+            ];
 
-               </script>
+
+            
+
+               function webmap_table ()
+               {
+               document.write ("<table width = 100%>");
+               for (var row=0; row < webmaps.length; row++)
+               {
+               document.write("<tr>");
+               for (var column=0; column < webmaps[0].length; column++);
+               {
+                 if (column < 2){
+                   document.write ("<td>") + webmaps [rows][columns] + "</td>");
+                 }
+                   else  {
+                   document.write("</tr>");
+                   document.write("<tr>");
+                   document.write( <"<td colspan='2'>" + webmaps[rows][columns] + "<p></td>");
+                 }
+               }
+               document.write("</tr>");
+               }
+               document.write("</table>");
+               } ;
+
+                document.write (webmap_table());
+
+
+              </script>
+
           </div>
-
-        </footer>
 
             </div>
+
+            <div id = "copyright">
+                 <script>
+
+                    // Creates Variable today, sets as date
+                    var today = new Date();
+
+                     // Creates Variable years sets the full year
+                      var year = today.getFullYear();
+
+                     // writes line of script plus calls function for the year variable
+                   document.writeln("Copyright &copy; " + year);
+
+                   </script>
+            </div>
+
           </div>
+
       </body>
 </html>

@@ -36,12 +36,14 @@ h1 {
     border: 2px solid #f7f7f7;
     border-radius: 25px;
     overflow: hidden;
+}
   }
 
 
 /* Selection is the division Id profile-picture as established in the HTML code. property float value left set the picture to the left of the its containing frame.   */
   #profile-picture {
     float: left;
+
   }
 
 /* Selection is the division Id welcome text as established in the HTML code. property padding-top generates space around an element's content, inside of any defined borders at value 25px. In this case it creates space from the top. property font size changes all font
@@ -60,21 +62,21 @@ position of the frame as value relative to its normal position. property left se
   position: relative;
   left: 50px;
 }
+/* defines the qualities of the table built in Js under the div id webmap-reveiws in the index. */
 
-
-footer
-{
-    height: 100px;
-    width:100%;
-    position: absolute;
-    left: 0;
-    bottom: 0;
+#webmap-reveiws {
+text-align: left;
+font-size: 25px;
+position: relative;
+padding-bottom: 50px;
 }
+
+
 
 #copyright {
  position: absolute;
  width: 1000px;
  text-align: center;
- bottom: 20px;
- padding-top: 50px;
+ padding-top: 100px;
+ bottom: 0px;
 }
