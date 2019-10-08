@@ -65,10 +65,11 @@ position of the frame as value relative to its normal position. property left se
 /* defines the qualities of the table built in Js under the div id webmap-reveiws in the index. */
 
 #webmap-reveiws {
-text-align: left;
+text-align: center;
 font-size: 25px;
 position: relative;
 padding-bottom: 50px;
+color: #f4a582
 }
 
 
