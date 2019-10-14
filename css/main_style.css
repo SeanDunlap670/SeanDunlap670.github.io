@@ -7,6 +7,7 @@ body {
     color: #f4a582; /*Peach*/
     text-align: center;
     margin: 0;
+
 }
 
 
@@ -35,7 +36,7 @@ h1 {
     height: 100vh;
     border: 2px solid #f7f7f7;
     border-radius: 25px;
-    overflow: hidden;
+    overflow: auto;
 }
   }
 
@@ -43,7 +44,7 @@ h1 {
 /* Selection is the division Id profile-picture as established in the HTML code. property float value left set the picture to the left of the its containing frame.   */
   #profile-picture {
     float: left;
-
+    position: absolute;
   }
 
 /* Selection is the division Id welcome text as established in the HTML code. property padding-top generates space around an element's content, inside of any defined borders at value 25px. In this case it creates space from the top. property font size changes all font
@@ -75,9 +76,16 @@ color: #f4a582
 
 
 #copyright {
- position: absolute;
+ position: relative;
  width: 1000px;
  text-align: center;
  padding-top: 100px;
  bottom: 0px;
+}
+
+
+#mapid {
+  border: blue
+  border-type: solid
+ border-radius: 30px
 }

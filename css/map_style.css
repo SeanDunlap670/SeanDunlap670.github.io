@@ -1,0 +1,27 @@
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+background: lightGreen;
+opacity: 25%;
+border-color: blue;
+border-width: 3px;
+border-style: groove;
+}
+
+
+/* For corrdiate on click plug in */ 
+.leaflet-control-coordinates {
+	background: white;
+	border-radius: 4px;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+	cursor: pointer;
+	padding: 2px 5px;
+}
+
+.leaflet-control-coordinates.hidden {
+	display: none;
+}
+
+.leaflet-control-coordinates-lng {
+	padding-left: 5px;
+}
