@@ -9,7 +9,7 @@ border-style: groove;
 }
 
 
-/* For corrdiate on click plug in */ 
+/* For corrdiate on click plug in */
 .leaflet-control-coordinates {
 	background: white;
 	border-radius: 4px;

@@ -16,22 +16,24 @@
 <script src= "https://js.arcgis.com/4.13"></script>
 
 <script>
+  // sets the requiered features of the esri map
   require ([
   "esri/Map",
   "esri/views/MapView",
   "esri/layers/TileLayer"
   ],
+  // The funciton that calls the seperate map variables.
       function(Map, MapView, TileLayer){
-
+ // Creates a variable establishing a new map tile layer. It calls the data for this layer from the esri data base with the URL
       var TransportationLayer = new TileLayer({
       url: "https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer"
       });
-
+      // Creates the variable for the map and sets the layer as the tile layer we just made
       var map = new Map ({
       basemap: "oceans",
       layers: [TransportationLayer]
       });
-
+      // sets the veiw places it in a html container sets the center point on opening and the zoom on open.
       var view = new MapView ({
       container: "viewDiv",
       map: map,

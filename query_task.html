@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Query Task!</title>
+<style>
+  html, body, #viewDiv {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#optionsDiv {
+ background-color: dimgray
+ color: white;
+ padding: 10px;
+ width: 350px;
+ }
+
+ .esri-popup .esri-popup-header .esri-title {
+  font-size: 18px;
+  font-weight: : bolder;
+  }
+
+  .esri-popup .esri-popup-body .esri-popup-content {
+  font-size: 14px;
+  }
+
+</style>
+
+<link rel= "stylesheet" href= "https://js.arcgis.com/4.13/esri/css/main.css">
+<script src= "https://js.arcgis.com/4.13"></script>
+
+<script>
+// Inside the requiered tag is where the arc map layer properties are established. This sets the map and veiw and allows for a tile layer and a map image layer. References the basemap gallery as a widget availible.
+// sets a graphics layer. REferences an esri task querytask. References a esri task to support query. References the dojo base aray and other dojo function variable.
+  require ([
+  "esri/Map",
+  "esri/views/MapView",
+  "esri/layers/TileLayer",
+  "esri/layers/MapImageLayer",
+  "esri/widgets/BasemapGallery",
+  "esri/layers/GraphicsLayer",
+  "esri/tasks/QueryTask",
+  "esri/tasks/support/Query",
+  "dojo/_base/array",
+  "dojo/dom",
+  "dojo/on",
+  "dojo/domReady!"
+    ],
+    // This is the principle funcation that derives that map. It calls the muliple variables established within the function that coincide with the esri layers in requiered.
+      function(Map, MapView, TileLayer, MapImageLayer, BasemapGallery, GraphicsLayer, QueryTask, Query, arrayUtils, dom, on){
+
+
+      // Creates a variable and defines it as the TileLayer and associates it with the Url for the World Transportation Map
+      var TransportationLayer = new TileLayer({
+      url: "https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer"
+      });
+      // Creates a variable. type simple sets the format it creates the points. type simple marker creates and defines the symbol, as a yellow circle that has a yellow outline and labels it cities.
+      var CitiesRenderer = {
+      type: "simple", //autocasts as a new SimpleRenderer()
+      symbol: {
+      type: "simple-marker", //autocasts as a new SimpleMarkerSymbol()
+      size:3,
+      color: "yellow",
+      style: "circle",
+      outline: {
+      width: 1,
+      color: "yellow"
+      }
+      },
+      label: "Cities"
+      };
+      // This names a variable cities layer and establishes it as a map impage layer. It references the url for the arc gis online data base. It sets the sub layer as the citiesrenders point syles we set above
+      // This variable and also sets the opacity as 40%
+      var CitiesLayer = new MapImageLayer ({
+      url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer",
+      sublayers : [
+      {
+      id:0,
+      renderer: CitiesRenderer,
+      opacity: 0.4
+      }
+      ]
+      });
+      // This creates a variable map and sets it as a new map layer. It calls forth the dark gray base map type and sets the additional layers on th emap as our previous vaiables.
+      var map = new Map ({
+      basemap: "dark-gray",
+      layers: [TransportationLayer, CitiesLayer]
+      });
+      // This sets a new map view. It places it in the html body contaioner. It sets the map to call as the map we created in the last variable. sets the zoom to 10 and sets the opening corrdinates on californiea.
+      var view = new MapView ({
+      container: "viewDiv",
+      map: map,
+      zoom: 10,
+      center: [-118.2095, 34.0866]
+      });
+      // This calls on the veiw layer and set a on click funtion to happen. The click event will be called event handler.
+      var basemapGallery = new BasemapGallery ({
+      view: view
+      });
+      // This sets inside the veiw variable a user interface and adds it. It calls the variable basemap gallery that was just created. It puts the variable in the top right.
+      view.ui.add(basemapGallery, {
+      position: "top-right"
+      });
+
+      // Creates a Variable call the URL for the California Cities feature
+      var popUrl = "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/CaliforniaCities/FeatureServer/0";
+      // Creates a variable for the popup window that will appear in our query task funciton point sets. the content of the popup and information to be displayed is at the bottom.
+      var popupTemplate = {
+      title: "{City}",
+      fieldInfos: [{
+      fieldName: "Population",
+      label: "Population",
+      format: {
+      places: 0,
+      digitSeperator: true
+      }
+      }, {
+      fieldName: "Household",
+      label: "Household",
+      format: {
+      places: 0,
+      digitSeperator: true
+      }
+      }],
+      content:
+      "<b>Population:" +"</b> {Population}" +
+      "<br><b>Households:</b> {Household}" +
+      "<br><b>Latitude:</b> {Latitude}" +
+      "<br><b>Longitude:</b> {Longitude}"
+      };
+      // sets a new vaiable called results layer and establishes it as a new esri graphics layer.
+      var resultsLayer = new GraphicsLayer();
+      // sets the variable qTask and establishes it a new esri query task tool. it references the variable pop url for the query data.
+      var qTask = new QueryTask({
+      url: popUrl
+      });
+      // sets the variable params and establsihes it as a new query. It allows the geo points to be referenced and allows for all feilds of data to be accesed with the "*"
+      var params = new Query ({
+      returnGeometry: true,
+      outFields: ["*"]
+      });
+      // sets within the veiw variable and adds a when condition. Inside that condition it sets a  function.
+      // Function fist adds the options div to the bottom right of the map. Sets an on condition and uses a dom esri finftion to setlect by id when the do button is clicked the query function we created above is called.
+     view.when(function() {
+      view.ui.add("optionsDiv", "bottom-right");
+      on(dom.byId("doBtn"), "click", doQuery);
+    });
+    // The next three lines of code reference the attributes we established in our HTML body for the button options. It assigngs a java variable to each attribute section of our esri data set using the esri dom task.
+    var attributeName = dom.byId("attSelect");
+    var expressionSign = dom.byId("signSelect");
+    var value = dom.byId("valSelect");
+    // This next section of code it creating our query task.
+    function doQuery() {
+   // This line removes the previous results layer.
+     resultsLayer.removeAll();
+     // This line syncs the params variabel we created and with the values of the attributes we established in the esri data sets.
+     params.where = attributeName.value + expressionSign.value + value.value;
+     // This calls the esri query task and uses the newly defined params variable
+      qTask.execute(params)
+      // calls for the results of the exectued command
+        .then(getResults)
+     // This double checks that the vaiables where found
+        .catch(promiseRejected);
+      }
+    // This sets the next major function in our query task.
+    function getResults(response) {
+    // This creastes a variable for the population results and adds the results to the popup template we created above.
+        var popResults = arrayUtils.map(response.features, function(
+          feature) {
+           feature.popupTemplate = popupTemplate;
+           return feature;
+         });
+      // This adds the new data points to the resluts layer.
+       resultsLayer.addMany(popResults);
+     // this changes the veiw to the extent of our queried results. Then is sets a popup to open with the results of the query
+     view.goTo(popResults).then(function(){
+     view.popup.open ({
+      features: popResults,
+      featureMenuOpen: true,
+      updateLocationEnabled: true
+    });
+  });
+
+ dom.byId("printResults").innerHTML = popResults.length + "results found!";
+}
+// This funciton calls on the error catch we set in the first portion of the query funciton and logs said error to the console.
+function promiseRejected(error) {
+   console.error("Promise rejected:", error.message);
+ }
+
+    });
+</script>
+
+
+</head>
+
+<body>
+
+<div id="viewDiv"></div>
+<div class="esri-widget" id="optionsDiv">
+<h2> Cities in California</h2>
+<select class="esri-widget" id="attSelect">
+    <option value="Population">Population</option>
+    <option value="Household" selected>Households</option>
+</select>
+<select class= "esri-widget" id="signSelect">
+  <option value= ">">is greater than</option>
+  <option value= "<">is less than</option>
+</select>
+<select class="esri-widget" id= "valSelect">
+  <option value="10000">10,000</option>
+  <option value="50000">50,000</option>
+  <option value="100000">100,000</option>
+  <option value="150000">150,000</option>
+  <option value="200000">200,000</option>
+</select>
+<br>
+<br>
+<button class="esri-widget" id="doBtn">Do Query</button>
+<br>
+<p><span id="printResults"></span></p>
+</div>
+</body>
+
+</html>

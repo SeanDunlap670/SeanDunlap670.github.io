@@ -16,15 +16,17 @@
 <script src= "https://js.arcgis.com/4.13"></script>
 
 <script>
+  // sets the reuiered layers for the esri map
   require ([
   "esri/Map",
   "esri/views/MapView"
   ],
+    // The funciton calling the different map layer and veiw variables.
       function(Map, MapView){
       var map = new Map ({
       basemap: "streets"
       });
-
+      // estalishes the variable veiw and defines it as a esri view. sets the zoom and opening center of the map
       var view = new MapView ({
       container: "viewDiv",
       map: map,
